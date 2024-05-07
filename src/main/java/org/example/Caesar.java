@@ -19,6 +19,6 @@ public class Caesar {
         return result.toString();
     }
     public static String decrypt(String text, int shift) {
-        return "decrypted";
+        return encrypt(text, 26 - shift);
     }
 }
