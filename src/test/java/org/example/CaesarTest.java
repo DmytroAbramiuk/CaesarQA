@@ -33,7 +33,7 @@ class CaesarTest {
     }
 
     @Test
-    void performanceTest(){
+    void performanceTestWith1000Symbols(){
         double startTime, endTime;
         double elapsedTime;
 
@@ -58,6 +58,28 @@ class CaesarTest {
         elapsedTime = (endTime-startTime)/1000000.0;
         System.out.println("elapsed time = " + elapsedTime + " ms");
 
-        Assertions.assertTrue(elapsedTime<1000);
+        Assertions.assertTrue(elapsedTime<1);
+    }
+
+    @Test
+    void performanceTestWith500Symbols(){
+        double startTime, endTime;
+        double elapsedTime;
+
+        String textForEncrypt = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. " +
+                "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown " +
+                "printer took a galley of type and scrambled it to make a type specimen book. It has survived " +
+                "not only five centuries, but also the leap into electronic typesetting, remaining essentially " +
+                "unchanged. It was popularised in the 1960s with the release of Letraset sheets containing " +
+                "Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker " +
+                "including versions of Lorem Ipsum. ";
+
+        startTime = System.nanoTime();
+        Caesar.encrypt(textForEncrypt, 10);
+        endTime = System.nanoTime();
+        elapsedTime = (endTime-startTime)/1000000.0;
+        System.out.println("elapsed time = " + elapsedTime + " ms");
+
+        Assertions.assertTrue(elapsedTime<0.5);
     }
 }
